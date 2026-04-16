@@ -85,6 +85,41 @@ function showWithdraw(){
   alert("Enter withdraw request (manual approval)");
 }
 </script>
+<div style="padding:20px;">
+  <h2>🎰 Color Game</h2>
 
+  <p>Balance: ৳ <span id="balance">1000</span></p>
+
+  <button onclick="bet('red')" style="background:red;color:white;padding:10px;">Bet Red</button>
+  <button onclick="bet('green')" style="background:green;color:white;padding:10px;">Bet Green</button>
+
+  <p id="result"></p>
+</div>
+
+<script>
+let balance = 1000;
+
+function bet(color){
+  let betAmount = 100;
+
+  if(balance < betAmount){
+    alert("Not enough balance");
+    return;
+  }
+
+  let random = Math.random();
+  let winColor = random > 0.5 ? "red" : "green";
+
+  if(color === winColor){
+    balance += betAmount;
+    document.getElementById("result").innerText = "You Win! Color: " + winColor;
+  } else {
+    balance -= betAmount;
+    document.getElementById("result").innerText = "You Lose! Color: " + winColor;
+  }
+
+  document.getElementById("balance").innerText = balance;
+}
+</script>
 </body>
 </html>
